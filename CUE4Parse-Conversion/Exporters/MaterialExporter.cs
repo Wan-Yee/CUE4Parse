@@ -1,4 +1,5 @@
-﻿﻿using CUE4Parse_Conversion.Formats.Materials;
+﻿using System.Collections.Generic;
+using CUE4Parse_Conversion.Formats.Materials;
 using CUE4Parse_Conversion.Options;
 using CUE4Parse.UE4.Assets.Exports.Material;
 using CUE4Parse.UE4.Assets.Exports.Texture;
@@ -25,7 +26,11 @@ public sealed class MaterialExporter(UMaterialInterface material) : ExporterBase
             ct.ThrowIfCancellationRequested();
             if (!ptr.TryLoad<UTexture>(out var texture)) continue;
 
-            Session.Add(texture);
+            var textureExporter = new TextureExporter(texture)
+            {
+                OutputFolderOverride = OutputFolderOverride
+            };
+            Session.Add(textureExporter);
         }
 
         return files;
