@@ -50,6 +50,7 @@ public sealed class SkinnedAssetExporter(USkinnedAsset originalMesh) : MeshExpor
     {
         var options = Session.Options;
         if (!options.ExportAnimations || options.AnimationExportMode != EAnimationExportMode.ThroughMesh) return;
+        if (options.AnimationRelationshipExportMode != EAnimationRelationshipExportMode.LegacySkeletonExport) return;
 
         if (!mesh.Skeleton.TryLoad<USkeleton>(out var skeleton))
         {

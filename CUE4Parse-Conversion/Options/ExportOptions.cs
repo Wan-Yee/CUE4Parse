@@ -21,7 +21,12 @@ public class ExportOptions(
     EExportFolderMode exportFolderMode = EExportFolderMode.None,
     bool exportAnimations = false,
     EAnimationExportMode animationExportMode = EAnimationExportMode.ThroughMesh,
-    bool filterAnimMontage = false)
+    bool filterAnimMontage = false,
+    EAnimationRelationshipExportMode animationRelationshipExportMode = EAnimationRelationshipExportMode.ReferencedAndStrongCandidates,
+    bool exportMeshProfiles = false,
+    bool exportRelationshipManifest = true,
+    bool useSharedAnimationLibrary = true,
+    bool includeWeakCandidates = false)
 {
     public readonly EMeshFormat MeshFormat = meshFormat;
     public readonly ENaniteMeshFormat NaniteMeshFormat = naniteMeshFormat;
@@ -46,4 +51,10 @@ public class ExportOptions(
     public readonly bool ExportAnimations = exportAnimations;
     public readonly EAnimationExportMode AnimationExportMode = animationExportMode;
     public readonly bool FilterAnimMontage = filterAnimMontage;
+
+    public readonly EAnimationRelationshipExportMode AnimationRelationshipExportMode = animationRelationshipExportMode;
+    public readonly bool ExportMeshProfiles = exportMeshProfiles;
+    public readonly bool ExportRelationshipManifest = exportRelationshipManifest;
+    public readonly bool UseSharedAnimationLibrary = useSharedAnimationLibrary;
+    public readonly bool IncludeWeakCandidates = includeWeakCandidates;
 }

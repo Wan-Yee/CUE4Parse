@@ -35,6 +35,7 @@ public abstract class ExporterBase : IExporter
     /// directory) instead of following the exporter's own package path. Used by grouped export modes (ByModel / BySkeleton).
     /// </summary>
     public string? OutputFolderOverride { get; set; }
+    public string? OutputFileNameOverride { get; set; }
 
     protected internal ILogger Log { get; }
 
@@ -106,8 +107,8 @@ public abstract class ExporterBase : IExporter
     {
         if (OutputFolderOverride is { } folder)
         {
-            var leaf = SavePath.SubstringAfterLast('/');
-            return ($"{ObjectName}{file.NameSuffix}.{file.Extension}", Session.ResolveOutputPathInFolder(folder, leaf, file.Extension, file.NameSuffix));
+            var leaf = OutputFileNameOverride ?? SavePath.SubstringAfterLast('/');
+            return ($"{leaf}{file.NameSuffix}.{file.Extension}", Session.ResolveOutputPathInFolder(folder, leaf, file.Extension, file.NameSuffix));
         }
 
         return ($"{ObjectName}{file.NameSuffix}.{file.Extension}", Session.ResolveOutputPath(SavePath, file.Extension, file.NameSuffix));
